@@ -3,20 +3,28 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type ThemeMode = "light" | "dark" | "system";
-type ResolvedTheme = "light" | "dark";
+export type ThemeMode = "light" | "dark" | "system";
+export type ResolvedTheme = "light" | "dark";
 
-interface ThemeContextType {
+export interface ThemeContextType {
+  theme: ResolvedTheme;
   mode: ThemeMode;
+  themeMode: ThemeMode;
   resolvedTheme: ResolvedTheme;
+  isDark: boolean;
   setMode: (mode: ThemeMode) => void;
+  setThemeMode: (mode: ThemeMode) => void;
   toggleTheme: () => void;
 }
 
 const defaultContext: ThemeContextType = {
+  theme: "light",
   mode: "system",
+  themeMode: "system",
   resolvedTheme: "light",
+  isDark: false,
   setMode: () => {},
+  setThemeMode: () => {},
   toggleTheme: () => {},
 };
 
@@ -118,8 +126,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setModeState(newMode);
   }, []);
 
-  // ★ FIXED: Simple binary toggle based on what's ACTUALLY displayed
-  // If dark is showing → switch to light. If light is showing → switch to dark.
   const toggleTheme = useCallback(() => {
     setModeState((prev) => {
       const currentlyDisplayed = resolveTheme(prev);
@@ -127,12 +133,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return (
-    <ThemeContext.Provider value={{ mode, resolvedTheme, setMode, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{
+        theme: resolvedTheme,
+        mode,
+        themeMode: mode,
+        resolvedTheme,
+        isDark: resolvedTheme === "dark",
+        setMode,
+        setThemeMode: setMode,
+        toggleTheme,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );
