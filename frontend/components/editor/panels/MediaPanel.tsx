@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { usePresentationStore } from "@/stores/usePresentationStore";
 import { Sparkles, Loader2, Image as ImageIcon, Search, Check, Wand2, X, Compass } from "lucide-react";

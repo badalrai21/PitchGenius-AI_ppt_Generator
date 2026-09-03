@@ -248,7 +248,6 @@ export default function SignupPage() {
             <motion.div className="ap-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
               <AnimatePresence mode="wait">
                 {view === "check_email" ? (
-                  /* ═══════════ CHECK EMAIL VIEW ═══════════ */
                   <motion.div key="check_email" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
                     <div className="ap-card-head">
                       <motion.div
@@ -367,7 +366,7 @@ export default function SignupPage() {
                     </div>
                   </motion.div>
                 ) : (
-                  /* ═══════════ SIGNUP FORM VIEW ═══════════ */
+                  /* SIGNUP FORM VIEW */
                   <motion.div key="form" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }}>
                     <div className="ap-card-head">
                       <div className="ap-card-ic"><User size={24} /></div>

@@ -10,7 +10,6 @@ import {
   Zap,
   TrendingUp,
   Search,
-  Check,
   Edit2,
   ArrowLeft,
   Sparkles,
@@ -38,7 +37,6 @@ export default function AdminDashboardPage() {
   const [prompts, setPrompts] = useState<any[]>([]);
   const [editingPrompt, setEditingPrompt] = useState<any | null>(null);
 
-  // ★ DYNAMIC TIER CONFIG: Populated from Supabase pricing table
   const [availablePlans, setAvailablePlans] = useState<any[]>([]);
 
   useEffect(() => {
@@ -72,7 +70,7 @@ export default function AdminDashboardPage() {
   }, [router]);
 
   async function loadAdminData(supabase: any) {
-    // 1. Fetch Users
+    
     const { data: usersData } = await supabase
       .from("profiles")
       .select("id, email, full_name, plan, role, created_at")
@@ -81,12 +79,10 @@ export default function AdminDashboardPage() {
 
     setUsers(usersData || []);
 
-    // 2. Fetch Presentations Count
     const { count: deckCount } = await supabase
       .from("presentations")
       .select("id", { count: "exact", head: true });
 
-    // 3. Fetch Prompts
     const { data: promptsData } = await supabase
       .from("prompts")
       .select("*")
@@ -94,7 +90,6 @@ export default function AdminDashboardPage() {
 
     setPrompts(promptsData || []);
 
-    // 4. ★ DYNAMIC PLAN RETRIEVAL: Pull active plans from Supabase
     const { data: pricingPlans } = await supabase
       .from("pricing")
       .select("plan_name, price_monthly")
@@ -107,7 +102,6 @@ export default function AdminDashboardPage() {
     ];
     setAvailablePlans(plansList);
 
-    // Compute metrics using dynamic whitelisted plan names from the DB
     const paidTiers = plansList.filter((p: any) => p.price_monthly > 0).map((p: any) => p.plan_name);
     const proUsers = (usersData || []).filter((u: any) => paidTiers.includes(u.plan)).length;
 
@@ -269,7 +263,7 @@ export default function AdminDashboardPage() {
                         <span className="uppercase font-bold text-teal">{user.plan}</span>
                       </td>
                       <td className="py-3 px-3">
-                        {/* ★ DYNAMIC DROPDOWN: Generated from availablePlans */}
+                        {/* DYNAMIC DROPDOWN: Generated from availablePlans */}
                         <select
                           value={user.plan}
                           onChange={(e) => handleUpdatePlan(user.id, e.target.value)}

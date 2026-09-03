@@ -6,6 +6,8 @@ export type SourceType = "prompt" | "document" | "text";
 export interface MetricItem {
   value: string;
   label: string;
+  desc?: string;
+  change?: string;
 }
 
 export interface ColumnData {
