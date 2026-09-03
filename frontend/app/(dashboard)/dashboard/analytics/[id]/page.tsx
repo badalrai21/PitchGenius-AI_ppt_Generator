@@ -5,9 +5,16 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft, Users, Play, Share2, Eye, Calendar,
-  ChevronDown, Activity, Timer, Target, Download, TrendingUp,
-  TrendingDown, ShieldCheck
+   ArrowLeft,
+  BarChart3,
+  Calendar,
+  ChevronDown,
+  Download,
+  Eye,
+  Share2,
+  TrendingDown,
+  TrendingUp,
+  Users,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
