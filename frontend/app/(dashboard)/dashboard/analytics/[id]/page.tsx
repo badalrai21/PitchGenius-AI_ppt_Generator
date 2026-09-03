@@ -6,7 +6,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft, Users, Play, Share2, Eye, Calendar,
-  ChevronDown, Activity, Timer, Target, Download, ShieldCheck
+  ChevronDown, Activity, Timer, Target, Download, TrendingUp,
+  TrendingDown, ShieldCheck
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
