@@ -1171,7 +1171,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ```
 MIT License
 
-Copyright (c) 2025 Badal Rai
+Copyright (c) 2026 Badal Kumar Rai
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1192,7 +1192,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
 <div align="center">
 
-### **Badal Rai**
+### **Badal Kumar Rai**
 
 *Full-Stack Developer • AI Enthusiast • Apple Design Advocate*
 
@@ -1270,6 +1270,6 @@ If you found this project helpful, please consider giving it a **star** on GitHu
 
 <br />
 
-**© 2025 PitchGenius AI. All rights reserved.**
+**© 2026 PitchGenius AI. All rights reserved.**
 
 </div>
