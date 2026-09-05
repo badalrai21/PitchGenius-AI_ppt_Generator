@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Send Keep-Alive Ping to PitchGenius Backend
         run: |
-          URL="https://pitchgenius-api.onrender.com/api/v1/health"
+          URL="https://pitchgenius-api.onrender.com/"
           
           echo "Pinging: $URL"
           HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
