@@ -1,0 +1,28 @@
+name: Keep PitchGenius Backend Alive
+
+on:
+  schedule:
+    # Runs every 10 minutes to prevent Render 15-min idle sleep
+    - cron: "*/10 * * * *"
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab anytime
+
+jobs:
+  ping-backend:
+    name: Ping Render Health Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Send Keep-Alive Ping to PitchGenius Backend
+        run: |
+          URL="https://pitchgenius-api.onrender.com/api/v1/health"
+          
+          echo "Pinging: $URL"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          
+          echo "Response HTTP Status: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" -eq 200 ] || [ "$HTTP_STATUS" -eq 301 ] || [ "$HTTP_STATUS" -eq 302 ]; then
+            echo "✅ PitchGenius Backend is alive and operational!"
+          else
+            echo "⚠️ Backend responded with status $HTTP_STATUS (or is waking up)"
+          fi
